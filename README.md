@@ -44,3 +44,9 @@ smsd logs, are redirected to container's stdout, so you can easily check whats h
 ```shell
 docker logs docker-sms3-container
 ```
+### Sending an SMS
+```shell
+docker exec -i -t docker-sms3-container /bin/bash /etc/myscript/sms_send.sh +39XXXXXXXXXX "Sending of test message"
+```
+Please note, use the telefone number in E.164 format, using the international prefix with + ahead. Don't exeed 160 charaters for message.
+
