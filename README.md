@@ -27,10 +27,14 @@ docker create \
 --name docker-sms3-container \
 --device=/dev/ttyUSB1 \
 -v /etc/smsd.conf:/etc/smsd.conf \
+-v /etc/localtime:/etc/localtime:ro \
 -t -i docker-sms3
 ```
 Use option _--device_ to connect the GSM modem from the host, to docker container. This option is supported from Docker 1.2.0 and above.
 In order to make smsd.conf editable, you shoud use _-v_ options to map the file from inside the container to a path on host.
+
+Option _-v /etc/localtime:/etc/localtime:ro_ will setup the timezone of the container to same timezone of your host.
+
 ### Run the container
 Copy _smsd.conf_ included into this repository to local _/etc_ folder, before running the container.
 ```shell
