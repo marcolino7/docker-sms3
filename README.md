@@ -5,7 +5,10 @@ Based on Ubuntu 16.04 LTS (https://www.ubuntu.com/)
 
 Based on SMS3 sms gateway Version 3.1.21 (http://smstools3.kekekasvi.com/index.php?p=)
 
+Supported on Docker 1.20 and above (https://www.docker.com/)
+
 ## Usage
+Download the files from github, and unzip in a forder called _/docker-sms3_, cd into this folder.
 
 ### Build the image
 ```shell
