@@ -9,7 +9,7 @@ MAINTAINER Marcolino <marco.pozzuolo@gmail.com>
 ################## BEGIN INSTALLATION ######################
 # Update apt and install compilers, tar and wget
 RUN apt-get update
-RUN apt-get -y install gcc make tar wget nano curl cron logrotate
+RUN apt-get -y install gcc make tar wget nano curl logrotate cron
 
 # Download source version 3.1.21
 RUN wget http://smstools3.kekekasvi.com/packages/smstools3-3.1.21.tar.gz
@@ -30,9 +30,13 @@ RUN ln -sf /dev/stdout /var/log/smsd.log
 # Create a script folder into /etc
 RUN mkdir /etc/myscript
 
-# Copy scripts to folder and setting permission
+# Copy start script to folder and setting permission
 ADD ./script/start.sh /etc/myscript/start.sh
 RUN chmod 755 /etc/myscript/start.sh
+
+# Copy sms_send script to folder and setting permission
+ADD ./script/sms_send.sh /etc/myscript/sms_send.sh
+RUN chmod 755 /etc/myscript/sms_send.sh
 
 # Copy Logrotate configuration and setting security
 ADD ./extra/smsd.logrotate /etc/logrotate.d/smsd.logrotate
