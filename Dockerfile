@@ -9,7 +9,7 @@ MAINTAINER Marcolino <marco.pozzuolo@gmail.com>
 ################## BEGIN INSTALLATION ######################
 # Update apt and install compilers, tar and wget
 RUN apt-get update
-RUN apt-get -y install gcc make tar wget nano
+RUN apt-get -y install gcc make tar wget nano curl
 
 # Download source version 3.1.21
 RUN wget http://smstools3.kekekasvi.com/packages/smstools3-3.1.21.tar.gz
@@ -23,6 +23,9 @@ RUN make install -C /smstools3
 RUN rm -r /smstools*
 RUN apt-get clean
 ##################### INSTALLATION END #####################
+
+# Redirect sms3 logs to stdout
+RUN ln -sf /dev/stdout /var/log/smsd.log
 
 # Create a script folder into /etc
 RUN mkdir /etc/myscript
