@@ -31,7 +31,7 @@ In order to make smsd.conf editable, you shoud use _-v_ options to map the file 
 ### Run the container
 Copy _smsd.conf_ included into this repository to local _/etc_ folder, before running the container.
 ```shell
-cp smsd.conf /etc/smsd.conf
+cp ./extra/smsd.conf /etc/smsd.conf
 ```
 Then run the just created container
 ```shell
