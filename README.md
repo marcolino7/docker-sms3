@@ -7,6 +7,9 @@ Based on SMS3 sms gateway Version 3.1.21 (http://smstools3.kekekasvi.com/index.p
 
 Supported on Docker 1.20 and above (https://www.docker.com/)
 
+## Feature
+Full SMS3 server based on Ubuntu, with cron, logrotate, wget and curl just installed.
+
 ## Usage
 Download the files from github, and unzip in a forder called _/docker-sms3_, cd into this folder.
 
