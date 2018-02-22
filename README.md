@@ -39,5 +39,5 @@ docker start docker-sms3-container
 ```
 smsd logs, are redirected to container's stdout, so you can easily check whats happen
 ```shell
-docker start docker-sms3-container
+docker logs docker-sms3-container
 ```
