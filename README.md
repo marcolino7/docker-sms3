@@ -21,8 +21,23 @@ docker images
 ### Create the container
 ```shell
 docker create \
---name sms3 \
+--name docker-sms3-container \
 --device=/dev/ttyUSB1 \
+-v /etc/smsd.conf:/etc/smsd.conf \
 -t -i docker-sms3
 ```
 Use option _--device_ to connect the GSM modem from the host, to docker container. This option is supported from Docker 1.2.0 and above.
+In order to make smsd.conf editable, you shoud use _-v_ options to map the file from inside the container to a path on host.
+### Run the container
+Copy _smsd.conf_ included into this repository to local _/etc_ folder, before running the container.
+```shell
+cp smsd.conf /etc/smsd.conf
+```
+Then run the just created container
+```shell
+docker start docker-sms3-container
+```
+smsd logs, are redirected to container's stdout, so you can easily check whats happen
+```shell
+docker start docker-sms3-container
+```
