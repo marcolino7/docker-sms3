@@ -1,0 +1,9 @@
+/var/log/smsd.log {
+	rotate=4
+	size=2500k
+	missingok
+	compress
+	postrotate
+                /etc/init.d/sms3 reload > /dev/null
+       endscript
+}
