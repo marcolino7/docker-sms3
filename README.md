@@ -1,5 +1,4 @@
 # SMSTools3 Dockerized
-This script create a container that run smstool3y.
 
 Based on Ubuntu 16.04 LTS (https://www.ubuntu.com/)
 
