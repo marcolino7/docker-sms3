@@ -8,8 +8,9 @@ MAINTAINER Marcolino <marco.pozzuolo@gmail.com>
 
 ################## BEGIN INSTALLATION ######################
 # Update apt and install compilers, tar and wget
-RUN apt-get update
-RUN apt-get -y install gcc make tar wget nano curl logrotate cron
+RUN apt-get update && \ 
+    apt-get -y install gcc make tar wget nano curl logrotate cron && \
+    apt-get -y install php7.0 libapache2-mod-php7.0
 
 # Download source version 3.1.21
 RUN wget http://smstools3.kekekasvi.com/packages/smstools3-3.1.21.tar.gz
@@ -38,9 +39,16 @@ RUN chmod 755 /etc/myscript/start.sh
 ADD ./script/sms_send.sh /etc/myscript/sms_send.sh
 RUN chmod 755 /etc/myscript/sms_send.sh
 
+# Copy Setup script to folder and setting permission
+ADD ./script/setup.sh /etc/myscript/setup.sh
+RUN chmod 755 /etc/myscript/setup.sh
+
 # Copy Logrotate configuration and setting security
 ADD ./extra/smsd.logrotate /etc/logrotate.d/smsd.logrotate
 RUN chmod 0644 /etc/logrotate.d/smsd.logrotate
+
+# Execute setup Script
+RUN /etc/myscript/setup.sh
 
 # Sart the custom start script
 ENTRYPOINT ["/etc/myscript/start.sh"]
