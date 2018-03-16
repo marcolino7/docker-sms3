@@ -9,7 +9,7 @@ MAINTAINER Marcolino <marco.pozzuolo@gmail.com>
 ################## BEGIN INSTALLATION ######################
 # Update apt and install compilers, tar and wget
 RUN apt-get update && \ 
-    apt-get -y install gcc make tar wget nano curl logrotate cron && \
+    apt-get -y install gcc make tar wget nano curl logrotate cron sudo && \
     apt-get -y install php7.0 libapache2-mod-php7.0
 
 # Download source version 3.1.21
@@ -47,8 +47,17 @@ RUN chmod 755 /etc/myscript/setup.sh
 ADD ./extra/smsd.logrotate /etc/logrotate.d/smsd.logrotate
 RUN chmod 0644 /etc/logrotate.d/smsd.logrotate
 
+# Copy PHP script to send SMS
+ADD ./script/send_sms.php /var/www/html/send_sms.php
+
+# Adding to sudoers www-data for run related script
+RUN echo 'www-data ALL=NOPASSWD: /usr/local/bin/sendsms' >> /etc/sudoers
+
+# Restarting Apache
+RUN /etc/init.d/apache2 restart
+
 # Execute setup Script
-RUN /etc/myscript/setup.sh
+#RUN /etc/myscript/setup.sh
 
 # Sart the custom start script
 ENTRYPOINT ["/etc/myscript/start.sh"]
