@@ -9,7 +9,7 @@ MAINTAINER Marcolino <marco.pozzuolo@gmail.com>
 ################## BEGIN INSTALLATION ######################
 # Update apt and install compilers, tar and wget
 RUN apt-get update && \ 
-    apt-get -y install gcc make tar wget nano curl logrotate cron sudo && \
+    apt-get -y install gcc make tar wget nano curl logrotate cron sudo procmail && \
     apt-get -y install php7.0 libapache2-mod-php7.0
 
 # Download source version 3.1.21
