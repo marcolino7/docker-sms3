@@ -55,7 +55,20 @@ or
 ```shell
 docker exec -i -t docker-sms3-container /bin/bash sendsms +39XXXXXXXXXX 'Sending of test message'
 ```
+or
+This container offer a full WebServer with PHP support listening on port 80, based on Apache and PHP just installed. Also a SendSMS script is provided in order to send SMS via HTTP Post, to avoid SSH access to docker server. PHP accept JSON in input and process the sms according with passed data. Here is an example of the post.
+```shell
+URL: http://docker_server_address:80/send_sms.php
+POST RAW Data:
+{
+  "number":"+39XXXXXXXXXX",
+  "text":"Put here the text of the SMS to send with this script"
+}
+```
+Base on your docker server you may need to map the http port to another, using -p parameter, and you can alco map http folder to docker host in order to quickly edit the scripts. Apache will run on standard Ubuntu folder, /var/www/http/
+
 Please note, use the telefone number in E.164 format, using the international prefix with + ahead. Don't exeed 160 charaters for message.
+
 ### Receiving SMS
 
-Still in working
+When message is received, a script can be run according with SMS3 documentation. In my case, I use curl to run a command on a remote server and handle received SMS.
