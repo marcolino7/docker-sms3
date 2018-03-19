@@ -56,9 +56,6 @@ RUN echo 'www-data ALL=NOPASSWD: /usr/local/bin/sendsms' >> /etc/sudoers
 # Restarting Apache
 RUN /etc/init.d/apache2 restart
 
-# Execute setup Script
-#RUN /etc/myscript/setup.sh
-
 # Sart the custom start script
 ENTRYPOINT ["/etc/myscript/start.sh"]
 
